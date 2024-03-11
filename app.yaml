@@ -1,0 +1,40 @@
+runtime: nodejs20
+
+env_variables:
+  # Add your Google Cloud SQL connection details
+  MYSQL_USER: root
+  MYSQL_PASSWORD: root
+  MYSQL_DATABASE: teste_fas
+  INSTANCE_CONNECTION_NAME: regal-wall-416906:southamerica-east1:testefas
+
+
+# This is optional and can be adjusted based on your application's needs
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 1
+  max_instances: 10
+
+# Google Cloud SQL configuration
+beta_settings:
+  cloud_sql_instances: regal-wall-416906:southamerica-east1:testefas
+
+
+# Ensure your Node.js application listens on the correct port
+# Change 'your-app' to your actual application entry point
+ 
+entrypoint: npm start
+
+# Use the following lines if your application requires additional files or directories
+# Include only necessary files to reduce deployment size and speed
+# Includes can use wildcards (*)
+# Includes are relative to the `app.yaml` file
+# include:
+#   - lib/**/*.js
+#   - assets/**/*
+
+# Exclude unnecessary files or directories
+# Exclude patterns can use wildcards (*)
+# Exclude patterns are relative to the `app.yaml` file
+# exclude:
+#   - tests
+#   - node_modules

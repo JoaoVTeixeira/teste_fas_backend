@@ -12,12 +12,12 @@ const PORT = process.env.DBPORT
 
 async function getDataFromDatabase() {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: 3307
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
+
 
     try {
 
@@ -35,11 +35,10 @@ async function getDataFromDatabase() {
 
 async function getDataByIdFromDatabase(id) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -60,11 +59,10 @@ async function getDataByIdFromDatabase(id) {
 
 async function createProdutoInDatabase(newProduto) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -98,11 +96,10 @@ async function createProdutoInDatabase(newProduto) {
 
 async function updateProdutoInDatabase(id, updatedProduto) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -155,11 +152,10 @@ async function updateProdutoInDatabase(id, updatedProduto) {
 
 async function updateActiveStateDatabase(id) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {

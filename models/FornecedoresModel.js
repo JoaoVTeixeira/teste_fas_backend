@@ -12,11 +12,10 @@ const PORT = process.env.DBPORT
 
 async function getDataFromDatabase() {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -81,11 +80,10 @@ async function getDataFromDatabase() {
 
 async function getDataByIdFromDatabase(id) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -154,11 +152,10 @@ async function getDataByIdFromDatabase(id) {
 
 async function createFornecedorInDatabase(newFornecedor) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -177,7 +174,7 @@ async function createFornecedorInDatabase(newFornecedor) {
         let pessoaId = null;
         if (newFornecedor.tipo === 'juridica') {
             const [juridicaResult] = await connection.execute(
-                'INSERT INTO pessoa_juridica (cnpj, email, inscricao_estadual, nome_fantasia, razao_social, telefone, endereco_id) VALUES (?, ?, ?, ?, ?, ?)',
+                'INSERT INTO pessoa_juridica (cnpj, email, inscricao_estadual, nome_fantasia, razao_social, telefone, endereco_id) VALUES (?,?, ?, ?, ?, ?, ?)',
                 [newFornecedor.pessoa_juridica.cnpj, newFornecedor.pessoa_juridica.email, newFornecedor.pessoa_juridica.inscricao_estadual, newFornecedor.pessoa_juridica.nome_fantasia, newFornecedor.pessoa_juridica.razao_social, newFornecedor.pessoa_juridica.telefone, enderecoId]
             );
 
@@ -224,11 +221,10 @@ async function createFornecedorInDatabase(newFornecedor) {
 
 async function updateFornecedorInDatabase(id, updatedFornecedor) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
@@ -321,11 +317,10 @@ async function updateFornecedorInDatabase(id, updatedFornecedor) {
 
 async function updateActiveStateDatabase(id) {
     const connection = await mysql.createConnection({
-        host: HOST,
-        user: USER,
-        password: PASSWORD,
-        database: DATABASE,
-        port: PORT
+        user: process.env.MYSQL_USER,
+        password: process.env.MYSQL_PASSWORD,
+        database: process.env.MYSQL_DATABASE,
+        socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
     });
 
     try {
